@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Card from './card'
+import React from 'react';
+import Card from './card';
+import './cardlist.css';
 
-const CardList = () => {
-  const [robot, setRobot] = useState([]);
-
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(data => data.json())
-      .then(data => setRobot(robot.concat(data)))
-  }, [])
-
-  console.log(robot)
+const CardList = (prop) => {
+  const robot = prop.robot;
   return (
-    <div className='App'>
+    <div className='card-list'>
       {robot.length ? robot.map(elem => <Card robotImage={elem.id} name={elem.name}
         email={elem.email} key={elem.id} />) :
         <Card robotImage='sejkre'
