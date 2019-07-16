@@ -1,0 +1,19 @@
+.card-image{
+  border: 1px solid #ccc;
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 4px 4px 4px #888;
+  transition: all 1s;
+}
+
+.card-image img{
+  width: 110px;
+  height: 150px;
+}
+
+.card-image:hover{
+  transform: scale(1.1);
+}
