@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Card from './component/card'
 import './App.css';
 
 function App() {
+  const [robot, setRobot] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(data => data.json())
+      .then(data => setRobot(robot.concat(data)))
+  }, [])
+
+  console.log(robot)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {robot.length ? robot.map(elem => <Card robotImage={elem.id} name={elem.name} email={elem.email}/>) :
+        <Card robotImage='sejkre'
+          name='Jane Doe' email='janedoe@gmail.com' />
+      }
     </div>
   );
 }
