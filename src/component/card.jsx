@@ -4,7 +4,7 @@ const Card = (prop) => {
 
   return (
     <div className='card-image'>
-      <img src={'https://robohash.org/' + prop.robotImage} alt="The robot"/>
+      <img src={`https://robohash.org/${prop.robotImage}`} alt="The robot"/>
       <div>
         <h3>{prop.name}</h3>
         <p>{prop.email}</p>

@@ -14,7 +14,7 @@ function App() {
   console.log(robot)
   return (
     <div className="App">
-      {robot.length ? robot.map(elem => <Card robotImage={elem.id} name={elem.name} email={elem.email}/>) :
+      {robot.length ? robot.map(elem => <Card robotImage={elem.id} name={elem.name} email={elem.email} />) :
         <Card robotImage='sejkre'
           name='Jane Doe' email='janedoe@gmail.com' />
       }
