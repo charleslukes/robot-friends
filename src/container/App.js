@@ -2,34 +2,36 @@ import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux'
 import CardList from '../component/CardList';
 import SearchBox from '../component/SearchBox';
-import {setSearchField} from '../actions';
+import {setSearchField, requestRobots} from '../actions';
 import './App.css';
 
 const mapStateToProps = state => ({
-  searchField: state.searchField
+  searchField: state.searchRobots.searchField,
+  robots: state.requestRobots.robots,
+  isPending: state.requestRobots.isPending,
+  error: state.requestRobots.error
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleChange: (event) => dispatch(setSearchField(event.target.value))
+    handleChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots()) 
   }
 }
 
 function App(props) {
-  const [robot, setRobot] = useState([]);
-  const {searchField} = props;
+  
+  const {searchField, robots, isPending, error} = props;
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(data => data.json())
-      .then(data => setRobot(robot.concat(data)))
+    props.onRequestRobots()
   },[]);
 
   // const handleChange = (event) => {
   //   setSearch(event.target.value);
   // }
 
-  const filteredRobot = robot.filter(elem => elem.name.toLowerCase()
+  const filteredRobot = robots.filter(elem => elem.name.toLowerCase()
     .includes(searchField.toLowerCase()))
 
   return (
